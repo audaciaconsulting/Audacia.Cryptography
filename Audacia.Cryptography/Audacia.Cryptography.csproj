@@ -9,19 +9,5 @@
     <Description>Cryptographic utilities for Audacia projects.</Description>
     <Copyright>Copyright © Audacia 2017</Copyright>
     <PackageIconUrl>https://girnka-dm2305.files.1drv.com/y4mUfw_5APiy6YhvPidloaNkO5IMUh4GTX222ecazimKACSrlsUoptXi3WHjmHmPtDIxhjfcG0AJHcQ4NDxm4tA13PEBjzjoEnKm5hcoNzxS1i6um3cBaB0o9AMT3PXAULs9utk0wG6YP7tmUmQ_UTSaiG9mNEcXM_t1_Eiguvs1XeaIKBjbb_WF8hTUMzmwY_pGG8BuM9CDcu7tpW2oxK7fw</PackageIconUrl>
-  </PropertyGroup>
-  <Choose>
-    <When Condition="'$(TargetFramework)' == 'uap10.0'">
-      <PropertyGroup>
-        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
-        <NugetTargetMoniker>UAP,Version=v10.0</NugetTargetMoniker>
-        <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-        <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-        <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
-        <TargetFrameworkIdentifier>.NETCore</TargetFrameworkIdentifier>
-        <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-        <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
-      </PropertyGroup>      
-    </When>
-  </Choose>
+  </PropertyGroup>  
 </Project>
