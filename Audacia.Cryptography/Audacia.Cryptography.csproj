@@ -10,6 +10,9 @@
     <Copyright>Copyright © Audacia 2017</Copyright>
     <PackageIconUrl>https://girnka-dm2305.files.1drv.com/y4mUfw_5APiy6YhvPidloaNkO5IMUh4GTX222ecazimKACSrlsUoptXi3WHjmHmPtDIxhjfcG0AJHcQ4NDxm4tA13PEBjzjoEnKm5hcoNzxS1i6um3cBaB0o9AMT3PXAULs9utk0wG6YP7tmUmQ_UTSaiG9mNEcXM_t1_Eiguvs1XeaIKBjbb_WF8hTUMzmwY_pGG8BuM9CDcu7tpW2oxK7fw</PackageIconUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform " Version="6.0.6" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(TargetFramework)' == 'uap10.0'">
       <PropertyGroup>
@@ -21,10 +24,7 @@
         <TargetFrameworkIdentifier>.NETCore</TargetFrameworkIdentifier>
         <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
         <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
-      </PropertyGroup>
-      <ItemGroup>
-        <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform " Version="6.0.6" />
-      </ItemGroup>
+      </PropertyGroup>      
     </When>
   </Choose>
 </Project>
