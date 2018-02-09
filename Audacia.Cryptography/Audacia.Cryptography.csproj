@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp2.0;uap10.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;uap10.0</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Version>1.0.0.0</Version>
     <Authors>Adam Drewery</Authors>
@@ -21,7 +21,6 @@
         <TargetFrameworkIdentifier>.NETCore</TargetFrameworkIdentifier>
         <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
         <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
-        <LanguageTargets>$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets</LanguageTargets>
       </PropertyGroup>
       <ItemGroup>
         <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform " Version="5.2.2" />
