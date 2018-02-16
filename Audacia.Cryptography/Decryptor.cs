@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Audacia.Cryptography
 {
-    public abstract class Decryptor
+    public abstract class Decryptor : IDecryptor
     {
         public abstract byte[] Decrypt(byte[] input);
 
