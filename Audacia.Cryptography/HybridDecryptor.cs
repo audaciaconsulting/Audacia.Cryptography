@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace Audacia.Cryptography
 {
     public class HybridDecryptor : Decryptor, IDisposable
     {
-        private const string Delimiter = "&";
+        private const char Delimiter = '&';
         private RsaDecryptor _rsa;
 
         public byte[] PublicKey => _rsa.PublicKey;
@@ -26,7 +27,8 @@ namespace Audacia.Cryptography
 
         public override string Decrypt(string input)
         {
-            var parts = input.Split(new[] { Delimiter }, StringSplitOptions.None);
+            var parts = input.LowMemorySplit(Delimiter);
+            
             if (parts.Length != 3) throw new FormatException($"{nameof(input)} was not in the correct format");
 
             var encryptedKey = Convert.FromBase64String(parts[0]);
