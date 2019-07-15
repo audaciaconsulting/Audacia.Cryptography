@@ -21,11 +21,16 @@ namespace Audacia.Cryptography
         public override byte[] Decrypt(byte[] input)
         {
             var @string = Encoding.UTF8.GetString(input);
-            var decrypted = Decrypt(@string);
-            return Encoding.UTF8.GetBytes(decrypted);
+            return DecryptInternal(@string);
         }
 
         public override string Decrypt(string input)
+        {
+            var bytes = DecryptInternal(input);
+            return Encoding.UTF8.GetString(bytes);
+        }
+
+        private byte[] DecryptInternal(string input)
         {
             var parts = input.LowMemorySplit(Delimiter);
             
@@ -38,10 +43,7 @@ namespace Audacia.Cryptography
             var iv = _rsa.Decrypt(encryptedIv);
 
             using (var rijndael = new RijndaelDecryptor(key, iv))
-            {
-                var bytes = rijndael.Decrypt(payloadBytes);
-                return Encoding.UTF8.GetString(bytes);
-            }
+                return rijndael.Decrypt(payloadBytes);
         }
 
         public void Dispose()
