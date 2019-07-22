@@ -49,22 +49,6 @@ namespace Audacia.Cryptography.Tests
             var decrypted = bob.Decrypt(encrypted);
             decrypted.Should().Be(payload);
         }
-        
-        [Fact]
-        public void HybridBytes()
-        {
-            var bob = new HybridDecryptor();
-            var alice = new HybridEncryptor(bob.PublicKey);
-
-            var payload = new byte[12];
-            Random.NextBytes(payload);
-            
-            var encrypted = alice.Encrypt(payload);
-            encrypted.Should().NotBeEquivalentTo(payload);
-
-            var decrypted = bob.Decrypt(encrypted);
-            decrypted.Should().AllBeEquivalentTo(payload);
-        }
 
         [Fact]
         public void HybridParts()
