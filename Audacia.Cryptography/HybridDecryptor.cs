@@ -46,6 +46,18 @@ namespace Audacia.Cryptography
                 return rijndael.Decrypt(payloadBytes);
         }
 
+        public string Decrypt(string keyStr, string ivStr, string payload)
+        {
+            var encryptedKey = Convert.FromBase64String(keyStr);
+            var encryptedIv = Convert.FromBase64String(ivStr);
+            var payloadBytes = Convert.FromBase64String(payload);
+            var key = _rsa.Decrypt(encryptedKey);
+            var iv = _rsa.Decrypt(encryptedIv);
+
+            using (var rijndael = new RijndaelDecryptor(key, iv))
+                return Encoding.UTF8.GetString(rijndael.Decrypt(payloadBytes));
+        }
+
         public void Dispose()
         {
             _rsa?.Dispose();

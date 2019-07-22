@@ -42,7 +42,7 @@ namespace Audacia.Cryptography
 
             return string.Join(Delimiter, base64Strings);
         }
-
+        
         public void Dispose()
         {
             _rsa?.Dispose();
