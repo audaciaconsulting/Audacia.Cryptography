@@ -1,6 +1,6 @@
 namespace Audacia.Cryptography
 {
-    public class PayloadConstants
+    public static class PayloadConstants
     {
         internal const string Delimiter = "&";
     }
