@@ -9,7 +9,7 @@ namespace Audacia.Cryptography
 
         public virtual string Encrypt(string input)
         {
-            var bytes = Encoding.Default.GetBytes(input);
+            var bytes = Encoding.UTF8.GetBytes(input);
             var encrypted = Encrypt(bytes);
             return Convert.ToBase64String(encrypted);
         }

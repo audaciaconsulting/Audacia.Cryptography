@@ -20,14 +20,14 @@ namespace Audacia.Cryptography
 
         public override byte[] Decrypt(byte[] input)
         {
-            var @string = Encoding.Default.GetString(input);
+            var @string = Encoding.UTF8.GetString(input);
             return DecryptFromString(@string);
         }
 
         public override string Decrypt(string input)
         {
             var bytes = DecryptFromString(input);
-            return Encoding.Default.GetString(bytes);
+            return Encoding.UTF8.GetString(bytes);
         }
 
         private byte[] DecryptFromString(string input)
@@ -50,7 +50,7 @@ namespace Audacia.Cryptography
         }
 
         public string Decrypt(EncryptedPayload payload)
-            => Encoding.Default.GetString(DecryptInternal(payload.Key, payload.Iv, payload.Payload));
+            => Encoding.UTF8.GetString(DecryptInternal(payload.Key, payload.Iv, payload.Payload));
 
         public byte[] Decrypt(EncryptedBytePayload payload)
             => DecryptInternal(payload.Key, payload.Iv, payload.Payload);

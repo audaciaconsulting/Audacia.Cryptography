@@ -26,7 +26,7 @@ namespace Audacia.Cryptography
 
         public override string Encrypt(string input)
         {
-            var bytes = Encoding.Default.GetBytes(input);
+            var bytes = Encoding.UTF8.GetBytes(input);
             return EncryptInternal(bytes);
         }
 
