@@ -6,7 +6,6 @@ namespace Audacia.Cryptography
 {
     public class HybridEncryptor : Encryptor, IDisposable
     {
-        private const string Delimiter = "&";
         private RsaEncryptor _rsa;
         private RijndaelEncryptor _rijndael = new RijndaelEncryptor();
 
@@ -30,18 +29,7 @@ namespace Audacia.Cryptography
             return EncryptInternal(bytes);
         }
 
-        private string EncryptInternal(byte[] input)
-        {
-            var base64Strings = new[]
-            {
-                _rsa.Encrypt(_rijndael.Key),
-                _rsa.Encrypt(_rijndael.Iv),
-                _rijndael.Encrypt(input)
-            }
-            .Select(Convert.ToBase64String);
-
-            return string.Join(Delimiter, base64Strings);
-        }
+        private string EncryptInternal(byte[] input) => EncryptAsBytePayload(input).ToString();
 
         public EncryptedPayload EncryptAsPayload(string input) =>
             new EncryptedPayload
