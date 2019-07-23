@@ -8,9 +8,7 @@ namespace Audacia.Cryptography
         public byte[] Payload { get; set; }
         public byte[]  Iv { get; set; }
         public byte[]  Key { get; set; }
-        
-        private const string Delimiter = "&";
-        
+
         public override string ToString()
         {
             var base64Strings = new[]
@@ -21,7 +19,7 @@ namespace Audacia.Cryptography
                 }
                 .Select(Convert.ToBase64String);
 
-            return string.Join(Delimiter, base64Strings);
+            return string.Join(PayloadConstants.Delimiter, base64Strings);
         }
     }
 }

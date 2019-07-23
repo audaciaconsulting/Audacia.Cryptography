@@ -17,19 +17,10 @@ namespace Audacia.Cryptography
 
         public HybridEncryptor(byte[] key) => _rsa = new RsaEncryptor(key);
 
-        public override byte[] Encrypt(byte[] input)
-        {
-            var result = EncryptInternal(input);
-            return Encoding.UTF8.GetBytes(result);
-        }
+        public override byte[] Encrypt(byte[] input) 
+            => Encoding.UTF8.GetBytes(EncryptAsBytePayload(input).ToString());
 
-        public override string Encrypt(string input)
-        {
-            var bytes = Encoding.UTF8.GetBytes(input);
-            return EncryptInternal(bytes);
-        }
-
-        private string EncryptInternal(byte[] input) => EncryptAsBytePayload(input).ToString();
+        public override string Encrypt(string input) => EncryptAsPayload(input).ToString();
 
         public EncryptedPayload EncryptAsPayload(string input) =>
             new EncryptedPayload
