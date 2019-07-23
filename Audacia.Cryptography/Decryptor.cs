@@ -11,7 +11,7 @@ namespace Audacia.Cryptography
         {
             var bytes = Convert.FromBase64String(input);
             var decrypted = Decrypt(bytes);
-            return Encoding.UTF8.GetString(decrypted);
+            return Encoding.Default.GetString(decrypted);
         }
     }
 }

@@ -19,28 +19,29 @@ namespace Audacia.Cryptography
 
         public RijndaelEncryptor(byte[] key, byte[] iv) => _encryptor = _cryptoProvider.CreateEncryptor(key, iv);
 
-        private byte[] EncryptInternal(string input)
+        public override string Encrypt(string input)
         {
+            byte[] result;
             using (var memoryStream = new MemoryStream())
             using (var cryptoStream = new CryptoStream(memoryStream, _encryptor, CryptoStreamMode.Write))
             {
                 using (var writer = new StreamWriter(cryptoStream))
                     writer.Write(input);
 
-                return memoryStream.ToArray();            
+                result  = memoryStream.ToArray();            
             }
-        }
-
-        public override string Encrypt(string input)
-        {
-            var result = EncryptInternal(input);
             return Convert.ToBase64String(result);
         }
 
         public override byte[] Encrypt(byte[] input)
         {
-            var @string = Encoding.UTF8.GetString(input);
-            return EncryptInternal(@string);
+            using (var memoryStream = new MemoryStream())
+            using (var cryptoStream = new CryptoStream(memoryStream, _encryptor, CryptoStreamMode.Write))
+            {
+                cryptoStream.Write(input, 0, input.Length);
+                cryptoStream.FlushFinalBlock();
+                return memoryStream.ToArray();            
+            }
         }
 
         public void Dispose()

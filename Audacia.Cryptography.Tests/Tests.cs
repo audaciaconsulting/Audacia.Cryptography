@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 using FluentAssertions;
 using Xunit;
 
@@ -51,17 +52,33 @@ namespace Audacia.Cryptography.Tests
         }
 
         [Fact]
-        public void HybridParts()
+        public void HybridPayload()
         {
             var bob = new HybridDecryptor();
             var alice = new HybridEncryptor(bob.PublicKey);
             
             var payload = Guid.NewGuid().ToString("N");
-            var encrypted = alice.Encrypt(payload);
-            encrypted.Should().NotBe(payload);
-            var parts = encrypted.LowMemorySplit('&');
-            var decrypted = bob.Decrypt(parts[0], parts[1], parts[2]);
+            var encrypted = alice.EncryptAsPayload(payload);
+            encrypted.Payload.Should().NotBe(payload);
+            
+            var decrypted = bob.Decrypt(encrypted);
             decrypted.Should().Be(payload);
+        }
+
+        [Fact]
+        public void HybridBytespayload()
+        {
+            var bob = new HybridDecryptor();
+            var alice = new HybridEncryptor(bob.PublicKey);
+
+            var payload = new byte[12];
+            Random.NextBytes(payload);
+
+            var encrypted = alice.EncryptAsBytePayload(payload);
+
+            var decrypted = bob.Decrypt(encrypted);
+
+            decrypted.Should().BeEquivalentTo(payload);
         }
         
     }

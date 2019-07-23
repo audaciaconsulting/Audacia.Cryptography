@@ -11,7 +11,7 @@ namespace Audacia.Cryptography
         private RsaDecryptor _rsa;
 
         public byte[] PublicKey => _rsa.PublicKey;
-        
+
         public byte[] PrivateKey => _rsa.PrivateKey;
 
         public HybridDecryptor() => _rsa = new RsaDecryptor();
@@ -20,43 +20,40 @@ namespace Audacia.Cryptography
 
         public override byte[] Decrypt(byte[] input)
         {
-            var @string = Encoding.UTF8.GetString(input);
-            return DecryptInternal(@string);
+            var @string = Encoding.Default.GetString(input);
+            return DecryptFromString(@string);
         }
 
         public override string Decrypt(string input)
         {
-            var bytes = DecryptInternal(input);
-            return Encoding.UTF8.GetString(bytes);
+            var bytes = DecryptFromString(input);
+            return Encoding.Default.GetString(bytes);
         }
 
-        private byte[] DecryptInternal(string input)
+        private byte[] DecryptFromString(string input)
         {
             var parts = input.LowMemorySplit(Delimiter);
-            
+
             if (parts.Length != 3) throw new FormatException($"{nameof(input)} was not in the correct format");
 
-            var encryptedKey = Convert.FromBase64String(parts[0]);
-            var encryptedIv = Convert.FromBase64String(parts[1]);
-            var payloadBytes = Convert.FromBase64String(parts[2]);
-            var key = _rsa.Decrypt(encryptedKey);
-            var iv = _rsa.Decrypt(encryptedIv);
-
-            using (var rijndael = new RijndaelDecryptor(key, iv))
-                return rijndael.Decrypt(payloadBytes);
+            return DecryptInternal(parts[0], parts[1],parts[2]);
         }
 
-        public string Decrypt(string keyStr, string ivStr, string payload)
+        private byte[] DecryptInternal(string keyStr, string ivStr, string payloadStr) 
+        => DecryptInternal(Convert.FromBase64String(keyStr), Convert.FromBase64String(ivStr),
+            Convert.FromBase64String(payloadStr));
+        
+        private byte[] DecryptInternal(byte[] key, byte[] iv, byte[] payload)
         {
-            var encryptedKey = Convert.FromBase64String(keyStr);
-            var encryptedIv = Convert.FromBase64String(ivStr);
-            var payloadBytes = Convert.FromBase64String(payload);
-            var key = _rsa.Decrypt(encryptedKey);
-            var iv = _rsa.Decrypt(encryptedIv);
-
-            using (var rijndael = new RijndaelDecryptor(key, iv))
-                return Encoding.UTF8.GetString(rijndael.Decrypt(payloadBytes));
+            using (var rijndael = new RijndaelDecryptor(_rsa.Decrypt(key), _rsa.Decrypt(iv)))
+                return rijndael.Decrypt(payload);
         }
+
+        public string Decrypt(EncryptedPayload payload)
+            => Encoding.Default.GetString(DecryptInternal(payload.Key, payload.Iv, payload.Payload));
+
+        public byte[] Decrypt(EncryptedBytePayload payload)
+            => DecryptInternal(payload.Key, payload.Iv, payload.Payload);
 
         public void Dispose()
         {

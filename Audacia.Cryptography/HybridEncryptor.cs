@@ -26,7 +26,7 @@ namespace Audacia.Cryptography
 
         public override string Encrypt(string input)
         {
-            var bytes = Encoding.UTF8.GetBytes(input);
+            var bytes = Encoding.Default.GetBytes(input);
             return EncryptInternal(bytes);
         }
 
@@ -42,7 +42,23 @@ namespace Audacia.Cryptography
 
             return string.Join(Delimiter, base64Strings);
         }
-        
+
+        public  EncryptedPayload EncryptAsPayload(string input) =>
+            new EncryptedPayload
+            {
+                Key = Convert.ToBase64String(_rsa.Encrypt(_rijndael.Key)),
+                Iv = Convert.ToBase64String(_rsa.Encrypt(_rijndael.Iv)),
+                Payload = _rijndael.Encrypt(input)
+            };
+
+        public EncryptedBytePayload EncryptAsBytePayload(byte[] input) =>
+            new EncryptedBytePayload
+            {
+                Key = _rsa.Encrypt(_rijndael.Key),
+                Iv = _rsa.Encrypt(_rijndael.Iv),
+                Payload = _rijndael.Encrypt(input)
+            };
+
         public void Dispose()
         {
             _rsa?.Dispose();
