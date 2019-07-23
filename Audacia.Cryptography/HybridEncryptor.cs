@@ -43,7 +43,7 @@ namespace Audacia.Cryptography
             return string.Join(Delimiter, base64Strings);
         }
 
-        public  EncryptedPayload EncryptAsPayload(string input) =>
+        public EncryptedPayload EncryptAsPayload(string input) =>
             new EncryptedPayload
             {
                 Key = Convert.ToBase64String(_rsa.Encrypt(_rijndael.Key)),
