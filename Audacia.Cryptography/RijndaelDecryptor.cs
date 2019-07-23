@@ -21,10 +21,13 @@ namespace Audacia.Cryptography
 
         public override byte[] Decrypt(byte[] input)
         {
-            using (var memoryStream = new MemoryStream(input))
-            using (var cryptoStream = new CryptoStream(memoryStream, _decryptor, CryptoStreamMode.Read))
-            using (var reader = new StreamReader(cryptoStream))
-                return Encoding.UTF8.GetBytes(reader.ReadToEnd());
+            using (var memoryStream = new MemoryStream())
+            using (var cryptoStream = new CryptoStream(memoryStream, _decryptor, CryptoStreamMode.Write))
+            {
+                cryptoStream.Write(input, 0, input.Length);
+                cryptoStream.FlushFinalBlock();
+                return memoryStream.ToArray();
+            }
         }
 
         public void Dispose()
