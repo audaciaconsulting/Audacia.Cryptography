@@ -2,7 +2,7 @@ name: $(Year:yy)$(DayOfYear).$(Rev:r)
 trigger: [master]
 pr: { branches: { include: [master] } }
 schedules: [ { cron: "0 0 * * *", displayName: Nightly Build, branches: { include: [ master ] } } ]
-resources: { repositories: [ { repository: templates, type: git, name: Audacia/Audacia.Build, ref: refs/heads/feature/63523-SemanticVersioningPipeline } ] }
+resources: { repositories: [ { repository: templates, type: git, name: Audacia/Audacia.Build, ref: refs/heads/feature/109941-SupportMultipleReleaseBranchNames } ] }
 pool: { vmImage: windows-latest }
 
 stages:
