@@ -13,4 +13,4 @@ stages:
 
 - stage: Release
   displayName: Release
-  jobs: [ { template: src/deployment/nuget/jobs/internal-nuget-package.job.yaml@templates } ]
+  jobs: [ { template: src/deployment/nuget/jobs/internal-public-nuget-package.job.yaml@templates } ]
