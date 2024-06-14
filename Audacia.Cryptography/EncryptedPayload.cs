@@ -2,11 +2,11 @@ namespace Audacia.Cryptography
 {
     public class EncryptedPayload
     {
-        public string Key { get; set; }
+        public string Key { get; set; } = string.Empty;
 
-        public string Iv { get; set; }
+        public string Iv { get; set; } = string.Empty;
 
-        public string Payload { get; set; }
+        public string Payload { get; set; } = string.Empty;
         
         public override string ToString()
         {

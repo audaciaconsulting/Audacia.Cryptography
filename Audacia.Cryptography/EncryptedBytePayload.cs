@@ -5,9 +5,9 @@ namespace Audacia.Cryptography
 {
     public class EncryptedBytePayload
     {
-        public byte[] Payload { get; set; }
-        public byte[]  Iv { get; set; }
-        public byte[]  Key { get; set; }
+        public byte[] Payload { get; set; } = null!;
+        public byte[] Iv { get; set; } = null!;
+        public byte[] Key { get; set; } = null!;
 
         public override string ToString()
         {
