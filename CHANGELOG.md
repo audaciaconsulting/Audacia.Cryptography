@@ -4,7 +4,7 @@
 ### Added
 - No new functionality added
 
-### Changes
+### Changed
 - Preparation for making library open source
 
 ## 1.2.0.0 - 2022-01-20
@@ -18,5 +18,5 @@
 ### Added
 - Added payload models and new encryption functionality
 
-### Fixes
+### Fixed
 - Fixed byte encryption
