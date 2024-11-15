@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.2.22027 - 2022-01-20
+## 1.2.22028 - 2022-07-04
+### Added
+- No new functionality added
+
+### Fixed
+- Bug Fix: Use public NuGet feed
+
+## 1.2.22027 - 2022-06-22
 ### Added
 - No new functionality added
 
