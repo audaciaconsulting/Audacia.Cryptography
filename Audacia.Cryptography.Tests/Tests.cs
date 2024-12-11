@@ -13,8 +13,7 @@ namespace Audacia.Cryptography.Tests
         {
             var bob = new RsaDecryptor();
             var alice = new RsaEncryptor(bob.PublicKey);
-            
-            var payload = Guid.NewGuid().ToString("N");
+            ;
             var encrypted = alice.Encrypt(payload);
             encrypted.Should().NotBe(payload);
 
