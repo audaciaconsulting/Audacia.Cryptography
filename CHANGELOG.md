@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0- 2026-03-11
+### Added
+- No new functionality added
+
+### Fixed
+- No new fixes made
+
+### Changed
+- Upgraded class library to netstandard 2.1
+- Upgraded test project's target framework to .NET10
+
+
 ## 1.2.22028 - 2022-07-04
 ### Added
 - No new functionality added
