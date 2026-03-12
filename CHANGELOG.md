@@ -8,9 +8,7 @@
 - No new fixes made
 
 ### Changed
-- Upgraded class library to netstandard 2.1
 - Upgraded test project's target framework to .NET10
-
 
 ## 1.2.22028 - 2022-07-04
 ### Added
