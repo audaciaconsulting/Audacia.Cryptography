@@ -1,5 +1,15 @@
 # Changelog
 
+## No Version Change - 2026-03-11
+### Added
+- No new functionality added
+
+### Fixed
+- No new fixes made
+
+### Changed
+- Upgraded test project's target framework to .NET10
+
 ## 1.2.22028 - 2022-07-04
 ### Added
 - No new functionality added
