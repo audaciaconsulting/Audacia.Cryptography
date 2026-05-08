@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using Shouldly;
 using Xunit;
 
 namespace Audacia.Cryptography.Tests
@@ -16,10 +16,10 @@ namespace Audacia.Cryptography.Tests
             
             var payload = Guid.NewGuid().ToString("N");
             var encrypted = alice.Encrypt(payload);
-            encrypted.Should().NotBe(payload);
+            encrypted.ShouldNotBe(payload);
 
             var decrypted = bob.Decrypt(encrypted);
-            decrypted.Should().Be(payload);
+            decrypted.ShouldBe(payload);
         }
     
         [Fact]
@@ -30,10 +30,10 @@ namespace Audacia.Cryptography.Tests
             
             var payload = Guid.NewGuid().ToString("N");
             var encrypted = alice.Encrypt(payload);
-            encrypted.Should().NotBe(payload);
+            encrypted.ShouldNotBe(payload);
 
             var decrypted = bob.Decrypt(encrypted);
-            decrypted.Should().Be(payload);
+            decrypted.ShouldBe(payload);
         }
 
         [Fact]
@@ -44,10 +44,10 @@ namespace Audacia.Cryptography.Tests
             
             var payload = Guid.NewGuid().ToString("N");
             var encrypted = alice.Encrypt(payload);
-            encrypted.Should().NotBe(payload);
+            encrypted.ShouldNotBe(payload);
 
             var decrypted = bob.Decrypt(encrypted);
-            decrypted.Should().Be(payload);
+            decrypted.ShouldBe(payload);
         }
 		
         
@@ -60,9 +60,9 @@ namespace Audacia.Cryptography.Tests
             Random.NextBytes(payload);
             
             var encrypted = alice.Encrypt(payload);
-            encrypted.Should().NotBeEquivalentTo(payload);
+            encrypted.ShouldNotBe(payload);
             var decrypted = bob.Decrypt(encrypted);
-            decrypted.Should().BeEquivalentTo(payload);
+            decrypted.ShouldBeEquivalentTo(payload);
         }
         
         [Fact]
@@ -73,10 +73,10 @@ namespace Audacia.Cryptography.Tests
             
             var payload = Guid.NewGuid().ToString("N");
             var encrypted = alice.EncryptAsPayload(payload);
-            encrypted.Payload.Should().NotBe(payload);
+            encrypted.Payload.ShouldNotBe(payload);
             
             var decrypted = bob.Decrypt(encrypted);
-            decrypted.Should().Be(payload);
+            decrypted.ShouldBe(payload);
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace Audacia.Cryptography.Tests
 
             var decrypted = bob.Decrypt(encrypted);
 
-            decrypted.Should().BeEquivalentTo(payload);
+            decrypted.ShouldBeEquivalentTo(payload);
         }
         
     }
