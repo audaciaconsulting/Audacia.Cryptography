@@ -1,6 +1,6 @@
 # Changelog
 
-## No Version Change - 2026-03-11
+## 1.2.22029 - 2026-03-11
 ### Added
 - No new functionality added
 
@@ -11,6 +11,7 @@
 - Upgraded test project's target framework to .NET10
 - Replaced XUnit with XUnit v3 in test project.
 - Replaced FluentAssertions with Shouldly in test project.
+- Added Nuget README file.
 
 ## 1.2.22028 - 2022-07-04
 ### Added
