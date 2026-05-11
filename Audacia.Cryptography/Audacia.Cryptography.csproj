@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.2.22028</Version>
+    <Version>1.2.22029</Version>
     <Authors>Audacia</Authors>
     <Company>Audacia Consulting Ltd.</Company>
     <Description>Cryptographic utilities for Audacia projects.</Description>
@@ -12,6 +12,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,5 +20,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+	<None Include="..\README.md">
+		<Pack>True</Pack>
+		<PackagePath>\</PackagePath>
+	</None>
   </ItemGroup>
 </Project>
